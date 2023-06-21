@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    user-select: none;
+}
+
+.hide {
+    display: none !important;
+}
+
+body {
+    background-color: #000010;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: grid;
+    align-items: center;
+}
+
+#playBtn {
+    cursor: pointer;
+    height: 50px;
+    width: 100px;
+    border-radius: 5px;
+    background-color: #000025;
+    color: bisque;
+    border: 2px solid bisque;
+    position: fixed;
+    top: 10vh;
+    left: 45%;
+}
+
+#container {
+    height: 500px;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #000030;
+}
+
+#game, #result {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width: 500px;
+}
+
+#result {
+    color: bisque;
+    font-size: 2em;
+    font-variant: small-caps;
+}
+
+.row {
+    border: 1px solid bisque;
+    display: flex;
+    flex-basis: 100%;
+}
+
+#game .field {
+    border: 1px solid bisque;
+    flex-basis: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.field:hover:not(.clicked) {
+    opacity: 20%;
+    background-color: #000090;
+}
+
+#game .field.green {
+    color: #37CBD6;
+    font-size: 80px;
+}
+
+#game .field.pink {
+    color: #e99cdb;
+    font-size: 110px;
+}
+
+#result {
+    flex-basis: 100%;
+    display: flex;
+    text-align: center;
+    margin-left: auto; margin-right: auto;
+}
+
+span {
+    font-size: 3em;
+    display: inline;
+    text-align: center;
+}
