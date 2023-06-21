@@ -5,12 +5,12 @@ const playBtn = document.querySelector("#playBtn");
 
 let rows = [];
 
-const SQUARE = "\u25A1";
-const TRIANGLE = "\u20E4";
+const CROSS = "X";
+const NOUGHT = "O";
 
-let turn = SQUARE;
+let turn = CROSS;
 
-const side = 4;
+const side = 3;
 
 /****************
 initialization, creation of fields
@@ -29,7 +29,13 @@ for(let i = 0; i < side; i++)
     {
         let field = document.createElement("div");
         field.classList.add("field");
-        
+
+        field.addEventListener("mouseover", function () {
+            showHint (field);
+        });
+        field.addEventListener("mouseout", function () {
+            hideHint (field);
+        });
         field.addEventListener("click", function(){
             markField(field);
             setTimeout(() => {
@@ -51,17 +57,29 @@ function markField (item)
 {
     if(!item.classList.contains("clicked")){
         item.innerText = turn;
-        if(turn === SQUARE){
-            turn = TRIANGLE;
+        if(turn === CROSS){
+            turn = NOUGHT;
             item.classList.add("pink");
             item.classList.remove("green");
         }
         else{
-            turn = SQUARE;
+            turn = CROSS;
             item.classList.add("green");
             item.classList.remove("pink");
         }
         item.classList.add("clicked");
+    }
+}
+
+function showHint (item) {
+    if(!item.classList.contains("clicked")){
+        item.innerText = turn;
+    }
+}
+
+function hideHint (item) {
+    if(!item.classList.contains("clicked")){
+        item.innerText = "";
     }
 }
 
@@ -76,7 +94,7 @@ function checkVictory () {
         //checks fields in current row
         for (let x = 0; rows [y][x]; x++) {
             
-            if (x !== 0 && rows [y][x].innerText === previousText && previousText) score++;
+            if (x !== 0 && rows [y][x].innerText === previousText && previousText && rows [y][x].classList.contains("clicked")) score++;
             
             previousText = rows [y][x].innerText;
         }
@@ -93,7 +111,7 @@ function checkVictory () {
         //checks fields in current column
         for (let y = 0; y < side; y++) {
             
-            if (y !== 0 && rows [y][x].innerText === previousText && previousText) score++;
+            if (y !== 0 && rows [y][x].innerText === previousText && previousText && rows [y][x].classList.contains("clicked")) score++;
             
             previousText = rows [y][x].innerText;
         }
@@ -104,7 +122,7 @@ function checkVictory () {
     //checks both diagonals
     for (let i = 0, score = 0, previousText = ""; i < side; i++)
     {    
-        if (i !== 0 && rows [i][i].innerText === previousText && previousText) score++;
+        if (i !== 0 && rows [i][i].innerText === previousText && previousText && rows [i][i].classList.contains("clicked")) score++;
         
         previousText = rows [i][i].innerText;
         
@@ -112,7 +130,7 @@ function checkVictory () {
     }
     for (let i = side - 1, j = 0, score = 0, previousText = ""; i >= 0; i--, j++)
     {
-        if (j !== 0 && rows [j][i].innerText === previousText && previousText) score++;
+        if (j !== 0 && rows [j][i].innerText === previousText && previousText && rows [j][i].classList.contains("clicked")) score++;
         
         previousText = rows [j][i].innerText;
         

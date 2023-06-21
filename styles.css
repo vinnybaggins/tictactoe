@@ -65,6 +65,8 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    font-size: 120px;
+    color: bisque;
 }
 
 .field:hover:not(.clicked) {
@@ -74,12 +76,10 @@ body {
 
 #game .field.green {
     color: #37CBD6;
-    font-size: 80px;
 }
 
 #game .field.pink {
     color: #e99cdb;
-    font-size: 110px;
 }
 
 #result {
